@@ -1,12 +1,34 @@
 ---
 title: "LS 빅데이터 스쿨 3일차"
+author: "유은서"
 format: html
 jupyter: python3
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+##코드 청크 종류
+
+1. 인라인 코드청크:백틱 하나로 묶음
+1. 디스플레이 코드청크:백틱(```) 세개로 묶음
+
+*단축키: 'Ctrl + Alt + I'
+
+###실행 가능한 코드청크
+
+백틱 뒤에 `{python}`을 붙여주면 됨.
+
+##코드 청크 실행 옵션
+
+옵션은 ``#|` 시작함함
+
+*`echo`옵션: 코드를 문서에 보여줌
+*`eval`옵션: 코드를 돌릴 것인가, 그냥 둘것인가를 결정
+
 
 ## Running Code
 
@@ -16,11 +38,99 @@ When you click the **Render** button a document will be generated that includes 
 1 + 1
 ```
 
-You can add options to executable code like this 
+You can add options to executable code like this
 
 ```{python}
-#| echo: false
+#| echo: true
+#| eval: true
 2 * 2
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+# 제목1(가장 큰 제목)
+## 제목2
+### 제목3
+#### 제목4
+
+**굵은 텍스트**
+__굵은 텍스트__
+
+*이택릭 텍스트*
+_기울임 텍스트_
+
+~~취소선 텍스트~~
+
+1. 항목 1
+2. 항목 2
+3. 항목 3
+
+-항목 1
+-항목 2
+-항목 3
+
++항목 1
++항목 2
++항목 3
+
+*항목 1
+*항목 2
+*항목 3
+
+[슬기로운 통계생활](https://statisticsplaybook.com/obsidian-markdown-cheatsheet)
+
+![위키피디아 흑요석](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/ObsidianOregon.jpg/240px-ObsidianOregon.jpg)
+
+>Any can learn anything with a proper education.
+\- Issac, 2023
+
+인라인 코드: 'print("Hello, World!")'
+
+코드 블록:
+```
+def greet():
+    print("Hello, World!")
+```
+
+---
+***
+___
+
+
+이것은 간단한 각주[^1]입니다.
+[^1]: 이것은 참조된 텍스트입니다.
+
+이것은 각주가 여러줄로 달리는 경우[^2]입니다.
+
+[^2]: 각주의 첫 줄입니다.
+  이것은 각주가 여러 줄에 걸쳐 작성될 때 사용하는 방법입니다.
+  
+이것은 이름이 지정된 각주[^note]입니다.
+
+[^note]: 이름이 지정된 각주는 여전히 숫자로 표시되지만, 참조를 더 쉽게 식별하고 연결할 수 있게 해줍니다.
+
+인라인 각주도 사용할 수 있습니다. ^[이것은 인라인 각주입니다.]
+
+==하이라이트 텍스트==
+
+### 해야 할 일들
+
+- [x] ~~화분 물 주기~~
+- [ ] 우편함 확인
+- [ ] 밀린 일기 작성
+
+![위키피디아 흑요석|100x100](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/ObsidianOregon.jpg/360px-ObsidianOregon.jpg)
+
+![흑요석](./img/image1.jpg)
+
+## 수식입력 방법
+*인라인 수식: $ 하나로 감싸준다.(본문에 입력)
+*디스플레이 수식:$ 두개로 감싸준다.(본문과 독립적인 문단)
+
+문장 안에 숫자 $5^2$를 넣어보자.
+
+여러 숫자들을 따로 떼어보자.
+
+$$
+\sqrt{2}^{3}_{1}
+$$
