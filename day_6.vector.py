@@ -2,10 +2,10 @@ import numpy as np
 
 a = np.array([1.0, 2.0, 3.0])
 b = 2.0
-a * b
+a * b #array([2., 4., 6.])
 
-a.shape
-b.shape
+a.shape #(3,)
+b.shape #'float' object has no attribute 'shape'
 
 
 # 2차원 배열 생성
@@ -13,13 +13,18 @@ matrix = np.array([[ 0.0, 0.0, 0.0],
  [10.0, 10.0, 10.0],
  [20.0, 20.0, 20.0],
  [30.0, 30.0, 30.0]])
-matrix.shape
+matrix.shape #(4, 3)
 # 1차원 배열 생성
 vector = np.array([1.0, 2.0, 3.0])
-vector.shape
+vector.shape #(3,)
 # 브로드캐스팅을 이용한 배열 덧셈
 result = matrix + vector
 print("브로드캐스팅 결과:\n", result) 
+#브로드캐스팅 결과:
+#[[ 1.  2.  3.]
+# [11. 12. 13.]
+# [21. 22. 23.]
+# [31. 32. 33.]]
 
 # 2차원 배열 생성 
 matrix = np.array([[ 0.0, 0.0, 0.0],
@@ -31,11 +36,20 @@ vector = np.array([1.0, 2.0, 3.0, 4.0]
 # 브로드캐스팅을 이용한 배열 덧셈
 result = matrix + vector
 print("브로드캐스팅 결과:\n", result)
+#브로드캐스팅 결과:
+# [[ 1.  2.  3.]
+# [11. 12. 13.]
+# [21. 22. 23.]
+# [31. 32. 33.]]
 
 #vector 재정렬
 vector = np.array([1.0, 2.0, 3.0, 4.0]).reshape(4,1) #행이 하나 열이 네개
 vector
-vector.shape
+#array([[1.],
+ #      [2.],
+  #     [3.],
+   #    [4.]])
+vector.shape #(4, 1)
 result = matrix + vector
 print("브로드캐스팅 결과:\n", result)
 
@@ -78,14 +92,15 @@ print(np.delete(a, [1, 3])) #리스트 사용해서 여러개 제외시킴
 
 #5.1.2 논리 연산자
 a = np.arange(1,10)
-a>3
-a[a>3]
+a>3 #array([False, False, False,  True,  True,  True,  True,  True,  True])
+a[a>3] #array([4, 5, 6, 7, 8, 9])
 
-np.random.seed(42) #seed를 사용하면 같은 값이 발생함.
+np.random.seed(2024) #seed를 사용하면 같은 값이 발생함.
 a = np.random.randint(1, 10000,5)
-a
+a #array([7817, 3579, 2657, 2689, 2495], dtype=int32)
 (a>2000)&(a<5000)#a[조건을 만족하는 논리형 벡터]
-a[(a>2000)&(a<5000)]
+#array([False,  True,  True,  True,  True])
+a[(a>2000)&(a<5000)] #array([3579, 2657, 2689, 2495], dtype=int32)
 
 
 
@@ -192,34 +207,43 @@ b+1 #nan
 a+1 #error
 
 a = np.array([20, np.nan, 13, 24, 309])
-np.isnan(a)
+np.isnan(a) #array([False,  True, False, False, False])
 a_filtered = a[~np.isnan(a)]
-a_filtered
+a_filtered #array([ 20.,  13.,  24., 309.])
 
 #벡터 합치기
 str_vec = np.array(["사과", "배", "수박", "참외"])
 str_vec
-str_vec[[0, 2]]
+str_vec[[0, 2]] #array(['사과', '수박'], dtype='<U2')
 
 mix_vec = np.array(["사과", 12, "수박", "참외"], dtype=str)
 #리스트는 숫자, 문자 섞여도 허용, 벡터는 한가지만 허용, 조정후 모두 문자형 
-mix_vec
+mix_vec #array(['사과', '12', '수박', '참외'], dtype='<U2')
 
 combined_vec = np.concatenate((str_vec, mix_vec))
+#?np.concatenate
+#concatenate(
+#    (a1, a2, ...), 
+#   axis=0, 처럼 설명되어있음.
 #conceatenate는 튜플과 리스트 모두를 허용함.np.concatenate([str_vec, mix_vec])
 combined_vec
 
 
 col_stacked = np.column_stack((np.arange(1, 5), np.arange(12, 16)))
 col_stacked
+#array([[ 1, 12],
+#       [ 2, 13],
+#       [ 3, 14],
+#       [ 4, 15]])
 
 row_stacked = np.vstack((np.arange(1, 5), np.arange(12, 16)))
 row_stacked #강의안에서는 row_stack()함수로 표기되어있음. 이제는 vstack쓰자.
-
+#array([[ 1,  2,  3,  4],
+#       [12, 13, 14, 15]])
 
 #5.1.10.b 길이가 다른 벡터 합치기
 uneven_stacked = np.column_stack((np.arange(1, 5), np.arange(12, 18)))
-uneven_stacked #하면 에러뜸.
+uneven_stacked #하면 길이가 달라서 에러뜸.
 
 vec1 = np.arange(1, 5)
 vec2 = np.arange(12, 18)
@@ -228,24 +252,25 @@ vec1 #array([1, 2, 3, 4, 1, 2])
 
 uneven_stacked = np.vstack((vec1, vec2))
 uneven_stacked
-
+#array([[ 1,  2,  3,  4,  1,  2],
+#       [12, 13, 14, 15, 16, 17]])
 
 #5.1.11.a 연습 문제 1
 #주어진 벡터의 각 요소에 5를 더한 새로운 벡터를 생성하세요
 a = np.array([1, 2, 3, 4, 5])
-a +5 
+a +5  #array([ 6,  7,  8,  9, 10])
 
 #주어진 벡터의 홀수 번째 요소만 추출하여 새로운 벡터를 생성하세요.
 a = np.array([12, 21, 35, 48, 5])
-a[0::2]
+a[0::2] #array([12, 35,  5])
 
 #주어진 벡터에서 최대값을 찾으세요
 a = np.array([1, 22, 93, 64, 54])
-a.max()
+a.max() #np.int64(93)
 
 #주어진 벡터에서 중복된 값을 제거한 새로운 벡터를 생성하세요.
 a = np.array([1, 2, 3, 2, 4, 5, 4, 6])
-np.unique(a)
+np.unique(a) #array([1, 2, 3, 4, 5, 6])
 
 #주어진 두 벡터의 요소를 번갈아 가면서 합쳐서 새로운 벡터를 생성하세요.
 a = np.array([21, 31, 58])
@@ -256,8 +281,10 @@ x
 #짝수번째
 x[1::2] = b #아니면 x[[1, 3, 5]]
 x
+#array([8.76212408e+164, 2.40000000e+001, 1.33554846e+185, 4.40000000e+001,
+#       4.63456076e+228, 6.70000000e+001])
 #홀수번째
 x[0::2] = a #아니면 x[[2, 4, 6]]
-x
+x #array([21., 24., 31., 44., 58., 67.])
 
 

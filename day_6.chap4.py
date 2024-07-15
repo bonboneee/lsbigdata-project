@@ -10,7 +10,7 @@ df
 
 type(df) #<class 'pandas.core.frame.DataFrame'>
 df['name'] #Name: name, dtype: object가 아래에 뜸(시리즈라서)
-type(df['name'])
+type(df['name']) #<class 'pandas.core.series.Series'>
 
 #평균
 sum(df["english"])/4
@@ -58,7 +58,7 @@ df_exam["mean"] = df_exam["total"]/3
 df_exam
 
 df_exam["math"] > 50 #시리즈 생성
-#수학과 영어 성적이 동시에 50점 초과과
+#수학과 영어 성적이 동시에 50점 초과
 (df_exam["math"] > 50) & (df_exam["english"] > 50)
 
 #수학이 평균보다 높고 영어는 평균보다 낮은 사람
@@ -81,7 +81,7 @@ df_exam[0:10:2]
 df_exam.sort_values("math", ascending=False) #do it교재 151페이지
 df_exam.sort_values(["nclass", "math"], ascending = [True, False])
 
-np.where(a>3, "Up", "Down") 
+#np.where(a>3, "Up", "Down") 
 # np. where 조건 만족하는 위치를 찾아서 튜플로 산출
 # up, down 쓰고 산출하니 np.array 형태로 산출
 df_exam["updown"] = np.where(df_exam["math"] > 50, "Up", "Down")
