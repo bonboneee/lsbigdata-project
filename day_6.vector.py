@@ -32,15 +32,11 @@ matrix = np.array([[ 0.0, 0.0, 0.0],
  [20.0, 20.0, 20.0],
  [30.0, 30.0, 30.0]])
 # 벡터 생성
-vector = np.array([1.0, 2.0, 3.0, 4.0]
+vector = np.array([1.0, 2.0, 3.0, 4.0])
 # 브로드캐스팅을 이용한 배열 덧셈
 result = matrix + vector
 print("브로드캐스팅 결과:\n", result)
-#브로드캐스팅 결과:
-# [[ 1.  2.  3.]
-# [11. 12. 13.]
-# [21. 22. 23.]
-# [31. 32. 33.]]
+#ValueError: operands could not be broadcast together with shapes (4,3) (4,) 
 
 #vector 재정렬
 vector = np.array([1.0, 2.0, 3.0, 4.0]).reshape(4,1) #행이 하나 열이 네개
@@ -157,6 +153,11 @@ np.random.seed(2024)
 a= np.random.randint(1, 26346, 1000)
 a
 
+#random.choice
+import numpy as np
+np.random.seed(2024)
+a = np.random.choice(np.arange(1, 21), 10, False) #범위, 개수, 중복 여부
+print(a)
 
 #처음으로 5000보다 큰 숫자가 나왔을 때, 그 숫자 위치와 그 숫자는 무엇인가?
 np.random.seed(2024)
