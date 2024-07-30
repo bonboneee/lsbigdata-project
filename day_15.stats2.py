@@ -91,7 +91,6 @@ plt.clf()
 
 
 
-norm.ppf(0.995, loc = 0,scale = 1)
 
 #a에서 b까지 면적 계산했더니 95%다. a와 b를 구하시오.
 a = norm.ppf(0.025, loc = 4, scale =  np.sqrt(1.333333/20))
