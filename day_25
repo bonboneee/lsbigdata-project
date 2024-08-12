@@ -1,0 +1,34 @@
+import plotly.express as px
+#!pip install palmerpenguins
+import pandas as pd
+import numpy as np
+from palmerpenguins import load_penguins
+import seaborn as sns
+
+penguins = load_penguins()
+penguins.head()
+penguins.columns
+
+fig = px.scatter(
+                penguins,
+                x = 'bill_length_mm',
+                y = 'bill_depth_mm',
+                color = "species",
+)
+fig.show()
+
+# 타이틀 달기(0에서 1사이의 수치)
+fig.update_layout(
+    title = {'text': "<span style = 'color:blue;'font-weight:bold;'>팔머펭귄</span>",
+    'x' : 0.5,
+    'y' : 0.5}
+)
+fig
+# 70페이지
+
+<span>
+      <span style = 'font-weight:bold>"팔머펭귄" </span>,
+      <span> ... </span>
+      <span> ... </span>
+
+</span>

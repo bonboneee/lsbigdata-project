@@ -9,3 +9,7 @@ df.head()
 np.random.seed(20240730)
 np.random.choice(df["이름"], 2, replace = False)
 
+
+
+np.random.seed(29)
+np.random.choice(np.arange(2), 1, replace = False)
